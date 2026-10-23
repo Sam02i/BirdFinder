@@ -95,7 +95,7 @@ def main():
     print("\nNOT covered by this smoke test (need real network calls, test separately):")
     print("  - download_xenocanto.py  -> hits the live Xeno-Canto API")
     print("  - benchmark_birdnet.py   -> downloads/runs the real BirdNET model")
-    print("  - app/app.py             -> needs real trained checkpoints to load")
+    print("  - backend/app.py             -> needs real trained checkpoints to load")
 
 
 if __name__ == "__main__":

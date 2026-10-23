@@ -13,9 +13,11 @@
         "Cinnyris",
         "Copsychus",
         "Coracias",
+        "coromandus",
         "decaocto",
         "Dicrurus",
         "domesticus",
+        "flac",
         "huggingface",
         "IMAGENET",
         "inaturalist",
@@ -32,6 +34,7 @@
         "Orthotomus",
         "oscitans",
         "preds",
+        "pretraining",
         "Psittacula",
         "Pycnonotus",
         "saularis",
@@ -44,6 +47,9 @@
         "Threskiornis",
         "tristis",
         "Vanellus",
-        "venv"
+        "venv",
+        "wordmark",
+        "Xeno",
+        "xenocanto"
     ]
 }

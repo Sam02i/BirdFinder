@@ -1,4 +1,4 @@
-# Samiksha — Bird identification
+# BirdFinder — Bird identification
 
 A plain HTML/CSS/JavaScript website with a small FastAPI backend. The green
 mosaic flips tile by tile, and the same app identifies birds from photos or calls.
@@ -11,7 +11,7 @@ From this project folder:
 ```bash
 source venv/bin/activate
 pip install -r requirements.txt
-python app/app.py
+python backend/app.py
 ```
 
 Open **http://127.0.0.1:8000**. If you do not already have a virtual environment,
@@ -23,25 +23,29 @@ create one first with `python3 -m venv venv`.
 - **Collection:** searchable species catalog, with photo/audio support labels.
 - **About:** how the models work and what their scores mean.
 
-Use `PORT=8001 python app/app.py` to change the port. By default the server only
+Use `PORT=8001 python backend/app.py` to change the port. By default the server only
 listens on your computer. Set `HOST=0.0.0.0` when deploying to a server/container.
 
 ## Simple code map
 
 ```text
-app/
-  app.py                 # HTTP routes, upload validation, website serving
-  inference.py           # checkpoint loading and photo/audio predictions
-  static/
-    index.html           # shared header and page container
-    style.css            # layout, colors, responsive styles, tile animation
-    app.js               # pages, uploads, search, result rendering
-    mosaic.js            # original mapped tile-flip interaction
-    assets/              # the two original mosaic images
-    species/             # local examples for the species catalog
-vision/finetune_vision.py # existing photo training pipeline
-audio/                  # recording preparation, CNN training, evaluation
-tests/test_app.py       # API and error-path checks
+frontend/                # browser-facing website (no build step)
+  index.html             # shared header and page container
+  style.css              # palette, layout and responsive styles
+  app.js                 # pages, uploads, search and results
+  mosaic.js              # mapped tile-flip interaction
+  assets/                # mosaic and bird images
+  species/               # species catalog photographs
+backend/                 # Python API and model inference
+  app.py                 # HTTP routes, validation and frontend serving
+  inference.py           # model loading and photo/audio predictions
+tests/                   # API and inference checks
+vision/                  # photo model training scripts
+audio/                   # audio preparation, training and evaluation
+data/                    # local datasets (not tracked in Git)
+runs/                    # trained checkpoints and evaluation results
+requirements.txt         # Python dependencies
+Dockerfile               # container setup
 ```
 
 The frontend calls `/api/status`, `/api/species`, `/api/predict/image`, and
@@ -79,7 +83,7 @@ The synthetic checkpoints under `_smoke_test` are never used by the app.
 
 For alternate checkpoints, set `VISION_MODEL`, `VISION_CLASSES`, `AUDIO_MODEL`,
 and `AUDIO_CLASSES` to your file paths. Alternatively place `vision_model.pth`,
-`vision_classes.json`, `audio_model.pth`, and `audio_classes.json` in `app/`.
+`vision_classes.json`, `audio_model.pth`, and `audio_classes.json` in `backend/`.
 Restart the server after replacing an already-loaded checkpoint. Models load
 once on first use. Missing models show a clear unavailable state.
 
@@ -120,8 +124,8 @@ Your existing changes in `prepare_splits.py` have been preserved.
 
 ```bash
 python -m unittest discover -s tests -v
-node --check app/static/app.js
-node --check app/static/mosaic.js
+node --check frontend/app.js
+node --check frontend/mosaic.js
 ```
 
 Tests cover real photo inference, page routing, the species catalog, missing
@@ -143,13 +147,33 @@ server for PyTorch inference; it cannot run solely on static website hosting.
 A Dockerfile is included for a Python-capable host:
 
 ```bash
-docker build -t samiksha-bird-id .
-docker run --rm -p 8000:8000 samiksha-bird-id
+docker build -t birdfinder .
+docker run --rm -p 8000:8000 birdfinder
 ```
 
 The image includes the two trained checkpoints currently under `runs/` and the
 frontend, but excludes raw datasets, the virtual environment and smoke outputs.
 Docker deployment has not been executed as part of the local verification.
-Model weights are ignored by Git; include them separately when deploying from
-a fresh checkout. The integrated app has been run locally, not published to a
-remote Python host.
+The two production checkpoints are explicitly allowed by `.gitignore`; other
+training weights and datasets remain excluded. Commit the checkpoints and both
+`classes.json` files along with the source before deploying.
+
+### Render
+
+1. Push this project to a Git repository, including `render.yaml`, `Dockerfile`,
+   `requirements-deploy.txt`, `frontend/`, `backend/`, `audio/`, and the four files
+   under `runs/vision_v2/` and `runs/audio_v1/` referenced by the Dockerfile.
+2. In Render, create a Blueprint from that repository. Review the service plan
+   before confirming. PyTorch/audio processing can exceed a 512 MB instance;
+   choose adequate memory and check peak usage with a real audio upload.
+3. Render builds the Docker image and runs `python backend/app.py`. The app binds
+   to `0.0.0.0` and uses Render's `PORT` environment variable. `/healthz` checks
+   HTTP availability; `/api/status` reports checkpoint availability.
+4. After deployment, test Photo ID and Sound ID with real files and inspect logs.
+
+The image installs CPU-only PyTorch and excludes training datasets. The animated
+loading screen covers frontend asset loading, supports reduced motion, and can
+be skipped. It dismisses after eight seconds at most. It cannot appear before a
+sleeping Render service returns the HTML; an always-on service avoids that wait.
+
+No Render service has been created or deployed by this change.

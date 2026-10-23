@@ -8,13 +8,18 @@ import soundfile as sf
 
 from fastapi.testclient import TestClient
 from PIL import Image
-from app.app import app, identifier
-from app.inference import ModelUnavailable
+from backend.app import app, identifier
+from backend.inference import ModelUnavailable
 
 
 class ApiTests(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
+
+    def test_health_check(self):
+        response = self.client.get('/healthz')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), {'status': 'ok'})
 
     def test_all_pages_and_assets(self):
         for route in ('/', '/bird', '/audio', '/about', '/collection', '/static/app.js', '/static/mosaic.js'):
@@ -48,7 +53,7 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
 
     def test_upload_limit(self):
-        with patch('app.app.MAX_UPLOAD', 4):
+        with patch('backend.app.MAX_UPLOAD', 4):
             response = self.client.post('/api/predict/image', files={'file': ('image.png', b'12345')})
         self.assertEqual(response.status_code, 413)
 

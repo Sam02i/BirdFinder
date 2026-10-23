@@ -8,3 +8,7 @@ data/
 runs/**/*.pth
 
 work/
+
+# Only production checkpoints are shipped to Render (not training datasets).
+!runs/vision_v2/best_model.pth
+!runs/audio_v1/best_model.pth

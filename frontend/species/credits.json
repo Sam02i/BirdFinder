@@ -1,0 +1,58 @@
+{
+  "Acridotheres_tristis": {
+    "source": "https://commons.wikimedia.org/wiki/File:Common_Mynah_-_Acridotheres_tristis.jpg",
+    "author": "Marion Schneider & Christoph Aistleitner",
+    "license": "Public domain",
+    "license_url": "",
+    "changes": "Unmodified Wikimedia thumbnail; fitted inside a consistent frame."
+  },
+  "Ardea_cinerea": {
+    "source": "https://commons.wikimedia.org/wiki/File:Ardea_cinerea_-_Graureiher_-_Botanical_Garden_Cologne.jpg",
+    "author": "Raimond Spekking",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Unmodified Wikimedia thumbnail; fitted inside a consistent frame."
+  },
+  "Bubulcus_coromandus": {
+    "source": "https://commons.wikimedia.org/wiki/File:Bubulcus_coromandus_09280.jpg",
+    "author": "Vengolis",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Unmodified Wikimedia thumbnail; fitted inside a consistent frame."
+  },
+  "Cinnyris_asiaticus": {
+    "source": "https://commons.wikimedia.org/wiki/File:Purple_Sunbird_Male,_Bangalore,_India.jpeg",
+    "author": "Nicholas Iyadurai",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Unmodified Wikimedia thumbnail; fitted inside a consistent frame."
+  },
+  "Dicrurus_macrocercus": {
+    "source": "https://commons.wikimedia.org/wiki/File:Black_Drongo_Dicrurus_macrocercus_by_Dr._Raju_Kasambe.jpg",
+    "author": "Dr. Raju Kasambe",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Unmodified Wikimedia thumbnail; fitted inside a consistent frame."
+  },
+  "Orthotomus_sutorius": {
+    "source": "https://commons.wikimedia.org/wiki/File:Common_tailorbird_(Orthotomus_sutorius)_(29335716350).jpg",
+    "author": "Rison Thumboor from Thrissur, India",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "changes": "Unmodified Wikimedia thumbnail; fitted inside a consistent frame."
+  },
+  "Psittacula_krameri": {
+    "source": "https://commons.wikimedia.org/wiki/File:Psittacula_krameri_-Richmond_Park_-male-8.jpg",
+    "author": "London looks",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "changes": "Unmodified Wikimedia thumbnail; fitted inside a consistent frame."
+  },
+  "Streptopelia_decaocto": {
+    "source": "https://commons.wikimedia.org/wiki/File:20210924_Streptopelia_decaocto.jpg",
+    "author": "Cezar Popescu",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Unmodified Wikimedia thumbnail; fitted inside a consistent frame."
+  }
+}

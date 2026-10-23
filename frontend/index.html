@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BirdFinder· Bird ID</title>
+    <meta name="description" content="Compare bird photos and recordings with supported species. View ranked matches, confidence scores and species information.">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23273338'/%3E%3Cpath d='M7 22V10h7v6h11v6z' fill='%239CB080'/%3E%3C/svg%3E">
+    <style>
+      #page-loader { position: fixed; inset: 0; z-index: 1000; display: grid; place-content: center; justify-items: center; background: #F4EEDD; color: #293022; transition: opacity 240ms ease; }
+      .loading-tiles { display: grid; grid-template-columns: repeat(3, 22px); gap: 5px; margin-bottom: 28px; perspective: 400px; }
+      .loading-tiles i { width: 22px; height: 22px; background: #485337; border-radius: 3px; box-shadow: inset 0 1px 2px #ffffff70; animation: loading-flip 1.6s ease-in-out infinite; animation-delay: calc(var(--i) * 80ms); }
+      .loading-tiles i:nth-child(3n) { background: #ad853d; }
+      .loading-tiles i:nth-child(3n + 2) { background: #a7af80; }
+      #page-loader strong { font: 34px Georgia, serif; letter-spacing: -.04em; }
+      #page-loader p { font: 13px Arial, sans-serif; margin: 12px 0 24px; color: #59634a; }
+      #page-loader button { background: transparent; border: 1px solid #a7af80; border-radius: 4px; padding: 9px 14px; color: #485337; font: 12px Arial, sans-serif; cursor: pointer; }
+      #page-loader.loader-finished { opacity: 0; pointer-events: none; }
+      @keyframes loading-flip { 0%, 65%, 100% { transform: rotateX(0); } 30% { transform: rotateX(180deg); } }
+      @media (prefers-reduced-motion: reduce) { .loading-tiles i { animation: none; } #page-loader { transition: none; } }
+    </style>
+    <script src="/static/loading.js?v=loading15" defer></script>
+    <link rel="stylesheet" href="/static/style.css?v=loading15">
+    <script src="/static/app.js?v=loading15" defer></script>
+</head>
+
+<body>
+    <div id="page-loader" aria-label="Loading BirdFinder">
+      <div class="loading-tiles" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i></div>
+      <strong>BirdFinder</strong><p role="status">Preparing your view…</p>
+      <button type="button">Continue to site</button>
+    </div>
+    <header class="site-header"><a class="wordmark" href="/">BirdFinder</a>
+        <nav aria-label="Main navigation"><a href="/">Home</a><a href="/bird">Photo ID</a><a href="/audio">Sound ID</a><a
+                href="/about">About</a><a href="/collection">Collection</a></nav>
+    </header>
+    <main id="content"></main>
+    <noscript><style>#page-loader { display: none; }</style>Please enable JavaScript to identify birds and explore the mosaic.</noscript>
+</body>
+
+</html>

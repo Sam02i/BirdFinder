@@ -1,0 +1,9 @@
+# CPU PyTorch and torchvision are installed separately in Dockerfile.
+fastapi
+uvicorn
+python-multipart
+Pillow
+librosa
+soundfile
+matplotlib
+tqdm
